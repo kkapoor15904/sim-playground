@@ -19,88 +19,127 @@ export default function SimParams() {
             kp: Number(kp),
             ki: Number(ki),
             kd: Number(kd),
-            setpoint: Number(setpoint),
+            setpoint: Number(setpoint) / 1000,
             dt: Number(dt),
             invert,
         });
     };
 
     return (
-        <div>
+        <div className="flex flex-col gap-4">
             <form onSubmit={handleSubmit}>
-                <div>
-                    <label>
-                        <code>
-                            k<sub>p</sub>
-                        </code>
-                        :
-                        <input
-                            type="number"
-                            name="pid-p"
-                            step="any"
-                            defaultValue={0}
-                        />
-                    </label>
-                </div>
-                <div>
-                    <label>
-                        <code>
-                            k<sub>i</sub>
-                        </code>
-                        :
-                        <input
-                            type="number"
-                            name="pid-i"
-                            step="any"
-                            defaultValue={0}
-                        />
-                    </label>
-                </div>
-                <div>
-                    <label>
-                        <code>
-                            k<sub>d</sub>
-                        </code>
-                        :
-                        <input
-                            type="number"
-                            name="pid-d"
-                            step="any"
-                            defaultValue={0}
-                        />
-                    </label>
-                </div>
-                <div>
-                    <label>
-                        Setpoint:
-                        <input
-                            type="number"
-                            name="setpoint"
-                            step="any"
-                            defaultValue={0}
-                        />
-                    </label>
-                </div>
-                <div>
-                    <label>
-                        <input type="checkbox" name="invert" /> Invert
-                    </label>
-                </div>
-                <div>
-                    <label>
-                        <input
-                            type="number"
-                            name="dt"
-                            step="any"
-                            defaultValue={0.01}
-                        />
-                        dt
-                    </label>
-                </div>
-                <div>
-                    <button type="submit">Set</button>
-                    <button type="reset">Reset</button>
-                </div>
+                <table className="min-w-full border-separate border-spacing-y-2">
+                    <tbody>
+                        <tr>
+                            <td className="pr-2 text-right align-middle">
+                                <label htmlFor="pid-p">
+                                    <code>
+                                        k<sub>p</sub>
+                                    </code>
+                                </label>
+                            </td>
+                            <td>
+                                <input
+                                    id="pid-p"
+                                    type="number"
+                                    name="pid-p"
+                                    step="any"
+                                    defaultValue={0}
+                                />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td className="pr-2 text-right align-middle">
+                                <label htmlFor="pid-i">
+                                    <code>
+                                        k<sub>i</sub>
+                                    </code>
+                                </label>
+                            </td>
+                            <td>
+                                <input
+                                    id="pid-i"
+                                    type="number"
+                                    name="pid-i"
+                                    step="any"
+                                    defaultValue={0}
+                                />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td className="pr-2 text-right align-middle">
+                                <label htmlFor="pid-d">
+                                    <code>
+                                        k<sub>d</sub>
+                                    </code>
+                                </label>
+                            </td>
+                            <td>
+                                <input
+                                    id="pid-d"
+                                    type="number"
+                                    name="pid-d"
+                                    step="any"
+                                    defaultValue={0}
+                                />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td className="pr-2 text-right align-middle">
+                                <label htmlFor="setpoint">Setpoint [mm]</label>
+                            </td>
+                            <td>
+                                <input
+                                    id="setpoint"
+                                    type="number"
+                                    name="setpoint"
+                                    step="any"
+                                    defaultValue={6}
+                                    min={0}
+                                    max={13}
+                                />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td className="pr-2 text-right align-middle">
+                                <label htmlFor="invert">
+                                    Invert controller output
+                                </label>
+                            </td>
+                            <td>
+                                <input
+                                    id="invert"
+                                    type="checkbox"
+                                    name="invert"
+                                />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td className="pr-2 text-right align-middle">
+                                <label htmlFor="dt">dt</label>
+                            </td>
+                            <td>
+                                <input
+                                    id="dt"
+                                    type="number"
+                                    name="dt"
+                                    step="any"
+                                    defaultValue={0.01}
+                                />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colSpan={2} className="pt-2">
+                                <div className="flex flex-row gap-2 justify-center">
+                                    <button type="submit">Set</button>
+                                    <button type="reset" className="bg-error">
+                                        Reset
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </form>
         </div>
     );
